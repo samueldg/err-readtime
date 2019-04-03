@@ -1,0 +1,9 @@
+[Core]
+Name = ReadTime
+Module = readtime_bot
+
+[Documentation]
+Description = Bot that estimates the reading time for links posted in a room.
+
+[Python]
+Version = 3
