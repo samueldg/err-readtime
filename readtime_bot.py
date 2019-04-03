@@ -66,7 +66,7 @@ class ReadTimePlugin(BotPlugin):
             return False
         return room_id == '#TODO'
 
-    @botcmd(admin_only=True)
+    @botcmd
     def readtime_activate(self, msg, args):
         """Activate the plugin in the current room.
         """
@@ -75,7 +75,7 @@ class ReadTimePlugin(BotPlugin):
 
         return 'ReadTime activated!'
 
-    @botcmd(admin_only=True)
+    @botcmd
     def readtime_deactivate(self, msg, args):
         """Dectivate the plugin in the current room.
         """
