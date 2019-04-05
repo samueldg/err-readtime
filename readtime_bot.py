@@ -6,6 +6,10 @@ from errbot import BotPlugin
 from errbot import botcmd
 from errbot import re_botcmd
 
+# Many sites explicitly block the default User-Agent provided by Python.
+# If we want to have a representative HTML page, we need to impersonate
+# a regular browser, unfortunately.
+USER_AGENT = 'Mozilla/5.0'
 
 # Using Django's URL regex (adapted for simplification)
 # https://github.com/django/django/blob/master/django/core/validators.py
@@ -39,7 +43,13 @@ URL_REGEX = re.compile(
 def get_page_html(url):
     """Given a web page URL, return it's HTML content as a string.
     """
-    with urllib.request.urlopen(url) as response:
+    request = urllib.request.Request(
+        url=url,
+        headers={
+            'User-Agent': USER_AGENT,
+        }
+    )
+    with urllib.request.urlopen(request) as response:
         content = response.read()
         content_encoding = response.headers.get_content_charset()
     html = content.decode(content_encoding)  # Is this legit?
