@@ -30,6 +30,7 @@ def assert_no_message():
         yield exc_info
 
 
+@pytest.mark.regression(issue=3)
 def test_get_url():
     url = 'https://towardsdatascience.com/from-scikit-learn-to-tensorflow-part-1-9ee0b96d4c85'
     html = readtime_bot.get_page_html(url)
