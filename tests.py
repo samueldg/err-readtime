@@ -4,7 +4,7 @@ from queue import Empty
 
 import pytest
 
-import readtime_bot  # noqa
+import readtime_bot
 
 
 # pytest/errbot config
@@ -29,6 +29,11 @@ def assert_no_message():
     with pytest.raises(Empty) as exc_info:
         yield exc_info
 
+
+def test_get_url():
+    url = 'https://towardsdatascience.com/from-scikit-learn-to-tensorflow-part-1-9ee0b96d4c85'
+    html = readtime_bot.get_page_html(url)
+    assert html is not None
 
 @pytest.mark.parametrize('command', [
     ACTIVATE_COMMAND,
